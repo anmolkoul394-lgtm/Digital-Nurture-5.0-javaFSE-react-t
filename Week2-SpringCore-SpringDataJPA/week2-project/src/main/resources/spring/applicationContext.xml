@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Module 5 -> "Spring IoC Container" subtopic:
+    "Configuring the Spring IoC container using XML".
+
+    This file is imported into the Java-based config via @ImportResource
+    in AppConfig.java, demonstrating that XML and annotation/Java-based
+    configuration can coexist in the same application (Module 5 subtopic:
+    "Mixing XML and Java-based configurations").
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Bean defined the classic XML way: id + class + constructor-arg -->
+    <bean id="welcomeMessage" class="java.lang.String">
+        <constructor-arg value="Week 2 - Spring Core &amp; Spring Data JPA Demo (DN5.0)"/>
+    </bean>
+
+</beans>
