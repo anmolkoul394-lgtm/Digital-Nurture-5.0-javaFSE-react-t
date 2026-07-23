@@ -1,0 +1,21 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:./config-repo
+  profiles:
+    active: native
+
+# "Dynamic configuration updates and refresh" (Module 8 subtopic) is exposed
+# via the /actuator/refresh endpoint on each client microservice.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,refresh

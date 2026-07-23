@@ -1,0 +1,8 @@
+# Config served to product-service by config-server
+# Module 8 -> "Managing configuration properties for different environments"
+app:
+  discount-percentage: 10
+  feature-flag-new-catalog: true
+logging:
+  level:
+    com.dn5.week4: INFO

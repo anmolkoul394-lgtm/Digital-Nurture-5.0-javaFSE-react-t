@@ -1,0 +1,6 @@
+app:
+  max-order-quantity: 50
+  product-service-fallback-message: "Product service is temporarily unavailable"
+logging:
+  level:
+    com.dn5.week4: INFO
