@@ -1,0 +1,33 @@
+{
+  "GroupName": "web-server-sg",
+  "Description": "Allows SSH from admin IP, and public HTTP/HTTPS traffic",
+  "IpPermissions": [
+    {
+      "_comment": "SSH - restricted to a single admin IP, never leave this open to 0.0.0.0/0",
+      "IpProtocol": "tcp",
+      "FromPort": 22,
+      "ToPort": 22,
+      "IpRanges": [
+        { "CidrIp": "203.0.113.25/32", "Description": "Admin workstation only" }
+      ]
+    },
+    {
+      "_comment": "HTTP - open to the world, since this is a public web server",
+      "IpProtocol": "tcp",
+      "FromPort": 80,
+      "ToPort": 80,
+      "IpRanges": [
+        { "CidrIp": "0.0.0.0/0", "Description": "Public HTTP access" }
+      ]
+    },
+    {
+      "_comment": "HTTPS - same idea, but for encrypted traffic",
+      "IpProtocol": "tcp",
+      "FromPort": 443,
+      "ToPort": 443,
+      "IpRanges": [
+        { "CidrIp": "0.0.0.0/0", "Description": "Public HTTPS access" }
+      ]
+    }
+  ]
+}

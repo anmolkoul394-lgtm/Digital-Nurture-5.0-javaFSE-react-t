@@ -1,0 +1,28 @@
+A typical 2-tier VPC layout - the shape most real web applications end up using:
+
+                              Internet
+                                 |
+                          Internet Gateway
+                                 |
+        VPC (10.0.0.0/16)       |
+        ------------------------|--------------------------------
+        |                       |                                |
+        |   PUBLIC SUBNET (10.0.1.0/24)                          |
+        |   - Application Load Balancer                          |
+        |   - NAT Gateway                                        |
+        |                       |                                |
+        |                  (routes private subnet traffic out)   |
+        |                       |                                |
+        |   PRIVATE SUBNET (10.0.2.0/24)                         |
+        |   - EC2 instances running the application              |
+        |   - RDS database instance                              |
+        |   (no direct route to the internet - only reachable    |
+        |    from inside the VPC, e.g. via the load balancer)     |
+        ------------------------------------------------------------
+
+Why this shape:
+- The load balancer is the ONLY thing directly reachable from the internet.
+- App servers and the database sit in the private subnet - completely unreachable
+  from outside the VPC, which is exactly what you want for anything holding data.
+- The NAT Gateway lets the private subnet reach OUT (e.g. to download OS updates,
+  call an external API) without allowing anything to reach IN.

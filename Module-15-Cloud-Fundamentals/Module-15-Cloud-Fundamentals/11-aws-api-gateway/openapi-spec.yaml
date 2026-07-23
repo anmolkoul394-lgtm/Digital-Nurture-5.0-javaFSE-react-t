@@ -1,0 +1,27 @@
+openapi: 3.0.1
+info:
+  title: Greeting API
+  description: A minimal API fronting the GreetingLambda function from the previous topic.
+  version: "1.0"
+paths:
+  /greet:
+    get:
+      summary: Get a greeting for a given name
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+          example: Anitha
+      responses:
+        "200":
+          description: A greeting message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Hello, Anitha! This greeting came from AWS Lambda."

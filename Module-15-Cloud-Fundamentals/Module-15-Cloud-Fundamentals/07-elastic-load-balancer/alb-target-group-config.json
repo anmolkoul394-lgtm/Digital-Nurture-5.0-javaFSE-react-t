@@ -1,0 +1,19 @@
+{
+  "Name": "task-api-target-group",
+  "Protocol": "HTTP",
+  "Port": 8080,
+  "TargetType": "instance",
+  "HealthCheckSettings": {
+    "_comment": "Reuses the /actuator/health endpoint from Week 3's Actuator topic - the load balancer polls this to decide if an instance is healthy.",
+    "HealthCheckPath": "/actuator/health",
+    "HealthCheckIntervalSeconds": 30,
+    "HealthCheckTimeoutSeconds": 5,
+    "HealthyThresholdCount": 2,
+    "UnhealthyThresholdCount": 3,
+    "Matcher": { "HttpCode": "200" }
+  },
+  "Targets": [
+    { "Id": "i-0123456789abcdef0", "Port": 8080 },
+    { "Id": "i-0fedcba9876543210", "Port": 8080 }
+  ]
+}

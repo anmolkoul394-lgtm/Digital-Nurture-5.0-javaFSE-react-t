@@ -1,0 +1,25 @@
+{
+  "Rules": [
+    {
+      "ID": "MoveOldObjectsToCheaperStorage",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "reports/" },
+      "Transitions": [
+        {
+          "_comment": "After 30 days, move to Standard-IA - cheaper, still fast if needed",
+          "Days": 30,
+          "StorageClass": "STANDARD_IA"
+        },
+        {
+          "_comment": "After 90 days, move to Glacier - cheapest, slow retrieval, for long-term archival",
+          "Days": 90,
+          "StorageClass": "GLACIER"
+        }
+      ],
+      "Expiration": {
+        "_comment": "Delete entirely after 2 years - no longer needed at all",
+        "Days": 730
+      }
+    }
+  ]
+}

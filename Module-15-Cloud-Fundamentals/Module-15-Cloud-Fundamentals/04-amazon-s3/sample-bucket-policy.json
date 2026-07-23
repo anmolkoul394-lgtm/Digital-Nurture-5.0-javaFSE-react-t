@@ -1,0 +1,13 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "_comment": "Makes ONLY the public-assets/ folder readable by anyone - everything else in the bucket stays private by default.",
+      "Sid": "PublicReadForStaticAssets",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::my-app-uploads-bucket/public-assets/*"
+    }
+  ]
+}
