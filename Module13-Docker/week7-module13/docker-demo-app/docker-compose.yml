@@ -1,0 +1,39 @@
+# Module 13 -> "Docker Compose" + "Docker Storage" + "Docker Networking"
+# subtopics, all in one file.
+services:
+  app:
+    build: .                      # builds from the Dockerfile in this folder
+    container_name: docker-demo-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/notesdb
+      SPRING_DATASOURCE_USERNAME: notes_user
+      SPRING_DATASOURCE_PASSWORD: notes_pass
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: mysql:8.0
+    container_name: docker-demo-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: notesdb
+      MYSQL_USER: notes_user
+      MYSQL_PASSWORD: notes_pass
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql       # named volume -> data survives container removal
+    networks:
+      - app-network
+
+networks:
+  app-network:                       # custom network: services reach each other by name ("db")
+    driver: bridge
+
+volumes:
+  db-data:                            # managed by Docker, independent of container lifecycle
