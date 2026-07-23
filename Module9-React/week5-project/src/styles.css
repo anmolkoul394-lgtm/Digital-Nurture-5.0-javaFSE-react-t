@@ -1,0 +1,10 @@
+body { font-family: system-ui, sans-serif; margin: 0; padding: 20px; background: #f7f7f9; }
+.app { max-width: 800px; margin: 0 auto; }
+.section { background: #fff; border: 1px solid #e2e2e2; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.error { color: #c0392b; font-size: 0.85rem; margin-left: 8px; }
+.ok { color: #2e7d32; }
+.warn { color: #c0392b; }
+.banner { background: #fff3cd; padding: 8px; border-radius: 4px; margin-top: 8px; }
+.api-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+.submitted { background: #f0f0f0; padding: 8px; border-radius: 4px; }
+button { cursor: pointer; }
